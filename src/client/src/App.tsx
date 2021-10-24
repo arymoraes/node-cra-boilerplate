@@ -12,7 +12,7 @@ function App() {
         setMessage(response);
       }
     });
-  });
+  }, []);
 
   return (
     <div className="app">
