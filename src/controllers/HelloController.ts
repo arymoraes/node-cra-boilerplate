@@ -1,9 +1,13 @@
-import { Response, Request } from 'express';
-import HelloI from '../interfaces/HelloI';
+import { Response, Request } from "express";
+import HelloI from "../interfaces/HelloI";
 
 export const sendHello = (req: Request, res: Response) => {
-   const hello: HelloI = {
-      message: 'Hello World from our API!',
-   }
-  res.status(200).send(hello);
-}
+  try {
+    const hello: HelloI = {
+      message: "Hello World from our API!",
+    };
+    res.status(200).send(hello);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
