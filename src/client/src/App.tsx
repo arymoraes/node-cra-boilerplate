@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 import { apiHello } from './services/helloApi';
 
 function App() {
@@ -15,9 +15,11 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {message && message}
+    <div className="app">
+      <header className="app__header">
+        <span>{message && message}
+          <p className="app__header__scss">And from SCSS</p>
+        </span>
       </header>
     </div>
   );
