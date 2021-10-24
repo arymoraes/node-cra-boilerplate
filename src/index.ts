@@ -3,11 +3,17 @@ import bodyParser from 'body-parser';
 import { createConnection } from 'typeorm';
 import dotenv from 'dotenv';
 import router from './routes/router';
+import cors from 'cors';
 
 const app = express();
 dotenv.config();
 
+const corsConfig = {
+  origin: [process.env.FRONTEND_URL],
+};
+
 app.use(bodyParser.json());
+app.use(cors(corsConfig));
 app.use(router);
 
 (async () => {
