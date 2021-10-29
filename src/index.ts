@@ -4,6 +4,8 @@ import { createConnection } from 'typeorm';
 import dotenv from 'dotenv';
 import router from './routes/router';
 import cors from 'cors';
+import redis from 'redis';
+import { Token } from './entities/Token';
 
 const app = express();
 dotenv.config();
@@ -16,6 +18,8 @@ app.use(bodyParser.json());
 app.use(cors(corsConfig));
 app.use(router);
 
+export const redisClient = redis.createClient();
+
 (async () => {
    try {
      await createConnection({
@@ -25,7 +29,7 @@ app.use(router);
        username: process.env.DB_USERNAME,
        password: process.env.DB_PASSWORD,
        database: process.env.DB_NAME,
-       entities: [],
+       entities: [Token],
        synchronize: true, // DO NOT USE FOR PRODUCTION
      });
      app.listen(parseInt(process.env.PORT, 10), () => {
