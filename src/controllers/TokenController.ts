@@ -36,9 +36,11 @@ export const getTokens = async (req: Request, res: Response) => {
     })
     redisClient.mget(tokensContracts, (err, cachedData) => {
       const updatedTokens = tokens.map((token: Token, index: number) => {
+        const tokenPrice = parseFloat(cachedData[index]);
+        const toFixedValue = tokenPrice < 5 ? 4 : 2 ;
         return {
           ...token,
-          price: parseFloat(cachedData[index]).toFixed(4),
+          price: tokenPrice.toFixed(toFixedValue),
         }
       });
       res.status(200).send(updatedTokens);
