@@ -2,6 +2,9 @@ import { Response, Request } from "express";
 import { redisClient } from "../index";
 import pancakeApi from "../api/pancakeApi";
 import { Token } from "../entities/Token";
+import { AuthRequest } from "../middleware/auth";
+import { getConnection, getRepository } from "typeorm";
+import errorHandler from "../utils/errorHandler";
 
 export const addToken = async (req: Request, res: Response) => {
   try {
@@ -45,6 +48,32 @@ export const getTokens = async (req: Request, res: Response) => {
       });
       res.status(200).send(updatedTokens);
     });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+export const addUserToken = async (req: AuthRequest, res: Response) => {
+  try {
+    const { id } = req.body;
+    const { user } = req;
+
+    await getConnection()
+      .createQueryBuilder()
+      .relation(Token, 'users')
+      .of(id)
+      .add(user.id)
+      .catch((err) => {
+        if (err) {
+          return errorHandler(res, 400, 'Error');
+        }
+      });
+
+    return res.status(200).send({
+      user: user.id,
+      token: id,
+    });
+
   } catch (error) {
     res.status(500).send(error);
   }

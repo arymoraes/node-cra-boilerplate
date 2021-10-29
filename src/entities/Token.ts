@@ -1,6 +1,7 @@
 import {
-    Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn,
+    Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, ManyToMany,
 } from 'typeorm';
+import { User } from './User';
 
 @Entity()
 export class Token extends BaseEntity {
@@ -23,4 +24,7 @@ export class Token extends BaseEntity {
 
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
     public updated_at: Date;
+
+    @ManyToMany(() => User, (user) => user.tokens)
+    users: User[];
 }
