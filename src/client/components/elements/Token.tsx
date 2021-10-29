@@ -1,5 +1,6 @@
-import React from 'react'
-import TokenI from '../../interfaces/Token'
+import React from 'react';
+import TokenI from '../../interfaces/Token';
+import styles from '../../styles/Token.module.scss';
 
 interface Props {
     token: TokenI,
@@ -7,8 +8,8 @@ interface Props {
 
 export const Token = ({token}: Props) => {
     return (
-        <div>
-            {token.symbol}: {token.name}
+        <div className={styles.token}>
+            {token.symbol}: ${token.price}
         </div>
     )
 }

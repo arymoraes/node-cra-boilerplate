@@ -5,6 +5,7 @@ interface TokenI {
     symbol: string,
     created_at: string,
     updated_at: string,
+    price: string,
 }
 
 export default TokenI;
