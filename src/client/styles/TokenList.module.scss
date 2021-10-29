@@ -1,11 +1,11 @@
 .tokenList {
-    background-color: black;
+    background-color: #ff4d4f;
     display: flex;
-    padding: .2rem 0;
     width: 100%;
     height: 3vh;
     overflow: scroll;
-    
+    display: flex;
+    align-items: center;
 }
 
 .tokenList::-webkit-scrollbar {

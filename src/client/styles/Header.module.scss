@@ -1,10 +1,27 @@
 .header {
-    background-color: red;
-    height: 10vh;
-
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 25px;
+    width: 100vw;
     color: white;
+    background-color: #001529;
+    padding: 0 1rem;
+}
+
+.navbar {
+    min-width: 40vw;
+
+    @media (min-width: 768px) {
+        min-width: 80vw;
+    }
+}
+
+.button {
+    float: right;
+}
+
+.profit {
+    color: greenyellow;
+    font-size: 18px;
+    font-weight: 600;
+    padding-right: 50px;
 }
