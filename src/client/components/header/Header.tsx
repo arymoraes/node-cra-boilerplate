@@ -11,8 +11,9 @@ export default function Header(): ReactElement {
                 <Menu.Item key="1">Home</Menu.Item>
                 <Menu.Item key="2">Dashboard</Menu.Item>
             </Menu>
+            <span className={styles.greeting}>Hello, Boilimax</span>
             <span className={styles.profit}>$4,311,55</span>
-            <Button type="primary" className={styles.button}>Login</Button>
+            <Button type="primary" className={styles.button}>Logout</Button>
         </div>
     )
 }
