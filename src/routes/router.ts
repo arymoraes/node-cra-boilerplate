@@ -1,10 +1,9 @@
 import express from 'express';
-import { addToken } from '../controllers/TokenController';
-import { sendHello } from '../controllers/HelloController';
+import { addToken, getTokens } from '../controllers/TokenController';
 
 const router = express.Router();
 
-router.get('/hello', sendHello);
+router.get('/tokens', getTokens);
 router.post('/token', addToken);
 
 export default router;
