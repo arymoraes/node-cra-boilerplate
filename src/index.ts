@@ -6,6 +6,7 @@ import router from './routes/router';
 import cors from 'cors';
 import redis from 'redis';
 import { Token } from './entities/Token';
+import fetchAllTokenPrices from './scripts/fetchTokenPrices';
 
 const app = express();
 dotenv.config();
@@ -35,6 +36,9 @@ export const redisClient = redis.createClient();
      app.listen(parseInt(process.env.PORT, 10), () => {
        console.log(`Server is up and listening on port ${process.env.PORT}.`);
      });
+     setInterval(() => {
+       fetchAllTokenPrices();
+     }, 5 * 60 * 1000);
    } catch (err) {
      console.log(err);
    }

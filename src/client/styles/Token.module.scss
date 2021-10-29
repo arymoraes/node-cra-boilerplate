@@ -1,10 +1,10 @@
 .token {
-    border: 2px solid blue;
-    padding: 1rem;
+    padding: 0rem;
     margin: 0 .2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 150px;
-    background-color: white;
+    min-width: 150px;
+    font-size: 14px;
+    background-color: yellow;
 }

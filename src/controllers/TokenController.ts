@@ -38,7 +38,7 @@ export const getTokens = async (req: Request, res: Response) => {
       const updatedTokens = tokens.map((token: Token, index: number) => {
         return {
           ...token,
-          price: parseFloat(cachedData[index]).toFixed(2),
+          price: parseFloat(cachedData[index]).toFixed(4),
         }
       });
       res.status(200).send(updatedTokens);
@@ -48,12 +48,14 @@ export const getTokens = async (req: Request, res: Response) => {
   }
 };
 
-const fetchTokenFromPancakeswapApi = async (res: Response, contract: string) => {
+export const fetchTokenFromPancakeswapApi = async (res: Response, contract: string) => {
   try {
     const token = (await pancakeApi().get(`/tokens/${contract}`)).data.data;
     return token;
   } catch {
-    res.status(404).send({ error: 'Token not found' });
+    if (res) {
+      res.status(404).send({ error: 'Token not found' });
+    }
     return false;
   }
 }
