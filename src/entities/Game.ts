@@ -1,29 +1,24 @@
 import {
-    Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, ManyToMany, ManyToOne,
+    Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, ManyToMany, OneToMany,
 } from 'typeorm';
-import { Game } from './Game';
+import { Token } from './Token';
 import { User } from './User';
 
 @Entity()
-export class Token extends BaseEntity {
+export class Game extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column({
-        unique: true,
-    })
-    contract: string;
 
     @Column()
     name: string;
 
     @Column()
-    symbol: string;
+    url: string;
 
     @Column({
         nullable: true,
     })
-    is_main: boolean;
+    img: string;
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
     public created_at: Date;
@@ -34,6 +29,6 @@ export class Token extends BaseEntity {
     @ManyToMany(() => User, (user) => user.tokens)
     users: User[];
 
-    @ManyToOne(() => Game, (game: Game) => game.token)
-    game: Game;
+    @OneToMany(() => Token, (token) => token.game)
+    token: Game[];
 }

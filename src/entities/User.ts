@@ -1,6 +1,7 @@
 import {
     Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany, JoinTable,
 } from 'typeorm';
+import { Game } from './Game';
 import { Token } from './Token';
 
 export enum UserRole {
@@ -39,14 +40,11 @@ export class User extends BaseEntity {
     })
     role: UserRole
 
-    // @ManyToMany(() => Token)
-    // @JoinTable({
-    //     name: 'users_tokens'
-    // })
-    // tokens: Token[];
-
     @ManyToMany(() => Token, (token) => token.users)
     @JoinTable({ name: 'users_tokens' })
     tokens: Token[];
-  
+
+    @ManyToMany(() => Game, (game) => game.users)
+    @JoinTable({ name: 'users_games' })
+    game: Game[];
 }
