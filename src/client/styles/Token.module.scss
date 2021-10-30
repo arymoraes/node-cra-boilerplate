@@ -9,3 +9,15 @@
     background-color: #f0f2f5;
     border-right: 1px solid black;
 }
+
+.button {
+    background-color: #fdbf2f;
+    border-color: #fdbf2f;
+    color: #000;
+
+    &:hover {
+        background-color: #FFB100;
+        border-color: #FFB100;
+        color: #000;
+    }
+}

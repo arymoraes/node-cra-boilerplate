@@ -53,7 +53,7 @@ const Home: NextPage = () => {
           defaultSelectedKeys={['1']}
           theme="dark"
           defaultOpenKeys={['sub1']}
-          style={{ height: 'calc(94.6vh - 3vh - 64px)', borderRight: 0 }}
+          style={{ height: 'calc(98.9vh - 64px)', borderRight: 0 }}
         >
           <SubMenu key="sub1" icon={<UserOutlined />} title="Games">
             <Menu.Item key="1">View Games</Menu.Item>
@@ -69,7 +69,7 @@ const Home: NextPage = () => {
           </SubMenu>
         </Menu>
       </Sider>
-      <Layout style={{ padding: '0 24px 24px' }}>
+      <Layout>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>Games</Breadcrumb.Item>
@@ -85,9 +85,9 @@ const Home: NextPage = () => {
         >
           Danlimax
         </Content>
+    <Footer style={{ textAlign: 'center', background: '#000c17', color: 'white', height: '5vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Fallenefc, BoiDrigoW e BoiLimaX ©2021</Footer>
       </Layout>
     </Layout>
-    <Footer style={{ textAlign: 'center', background: '#001529', color: 'white' }}>Fallenefc ©2021</Footer>
       </Layout>
   )
 }

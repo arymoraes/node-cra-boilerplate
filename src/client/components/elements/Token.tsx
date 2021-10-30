@@ -18,7 +18,7 @@ export const Token = ({ token }: Props) => {
 
     return (
         <Popover content={content} title={token.name}>
-            <Button type="primary" danger>{token.symbol}: ${token.price}</Button>
+            <Button className={styles.button} type="primary">{token.symbol}: ${token.price}</Button>
         </Popover>
     )
 }
