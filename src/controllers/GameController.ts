@@ -1,6 +1,18 @@
 import { Response, Request } from "express";
 import { Game } from "../entities/Game";
 
+export const getGames = async (req: Request, res: Response) => {
+  try {
+    const games = await Game.find();
+
+    res.status(200).send({
+        games
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 export const addGame = async (req: Request, res: Response) => {
   try {
     const { name, url, img } = req.body;

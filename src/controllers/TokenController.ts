@@ -33,7 +33,10 @@ export const getTokens = async (req: Request, res: Response) => {
   try {
     const tokens = await Token.find({
       skip: 0,
-      take: 10,
+      take: 20,
+      order: {
+        id: "ASC",
+      }
     });
     const tokensContracts: string[] = tokens.map((token: Token) => {
       return token.contract;
