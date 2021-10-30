@@ -1,12 +1,13 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { Component, useEffect, useState } from 'react'
 import Header from '../components/header/Header';
 import TokenList from '../components/lists/TokenList'
+import HomePage from '../components/pages/Home';
 import { apiAddToken, apiGetTokens } from './api/api';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import React from 'react';
+import SiteLayout from '../components/layout/SiteLayout';
 
 const { SubMenu } = Menu;
 const { Content, Sider, Footer } = Layout;
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
 
   const [tokens, setTokens] = useState<any>([]);
   const [contract, setContract] = useState<string>('');
+  const [selectedPage, setSelectedPage] = useState<string>('HomePage');
 
   useEffect(() => {
     apiGetTokens().then((response) => {
@@ -37,58 +39,9 @@ const Home: NextPage = () => {
   }
   
   return (
-      <Layout >
-      <Header />
-      <main>
-        { tokens && <TokenList tokens={tokens}/>}
-        {/* <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Contract" onChange={handleChange}/>
-          <button type="submit">Add Token</button>
-        </form> */}
-      </main>
-      <Layout>
-      <Sider width={200} className="site-layout-background">
-        <Menu
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          theme="dark"
-          defaultOpenKeys={['sub1']}
-          style={{ height: 'calc(98.9vh - 64px)', borderRight: 0 }}
-        >
-          <SubMenu key="sub1" icon={<UserOutlined />} title="Games">
-            <Menu.Item key="1">View Games</Menu.Item>
-            <Menu.Item key="2">Add Game</Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub2" icon={<LaptopOutlined />} title="Tokens">
-            <Menu.Item key="3">View Tokens</Menu.Item>
-            <Menu.Item key="4">Add Token</Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub3" icon={<NotificationOutlined />} title="Investments">
-            <Menu.Item key="5">My investments</Menu.Item>
-            <Menu.Item key="6">My profit</Menu.Item>
-          </SubMenu>
-        </Menu>
-      </Sider>
-      <Layout>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>Games</Breadcrumb.Item>
-          <Breadcrumb.Item>View Games</Breadcrumb.Item>
-        </Breadcrumb>
-        <Content
-          className="site-layout-background"
-          style={{
-            padding: 24,
-            margin: 0,
-            minHeight: 280,
-          }}
-        >
-          Danlimax
-        </Content>
-    <Footer style={{ textAlign: 'center', background: '#000c17', color: 'white', height: '5vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Fallenefc, BoiDrigoW e BoiLimaX ©2021</Footer>
-      </Layout>
-    </Layout>
-      </Layout>
+    <SiteLayout>
+      <div>test</div>
+    </SiteLayout>
   )
 }
 
