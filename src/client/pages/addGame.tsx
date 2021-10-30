@@ -1,13 +1,15 @@
 import React, { ReactElement } from 'react'
+import SiteLayout from '../components/layout/SiteLayout'
+import About from '../components/pages/About'
 
 interface Props {
-    
+
 }
 
-export default function addGame({}: Props): ReactElement {
+export default function addGame({ }: Props): ReactElement {
     return (
-        <div>
-            Boi Li Max
-        </div>
+        <SiteLayout>
+            <About />
+        </SiteLayout>
     )
 }

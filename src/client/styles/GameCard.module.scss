@@ -1,0 +1,27 @@
+.container {
+    width: 30rem;
+    height: 15rem;
+    position: relative;
+    background-size: 100%;
+    margin-right: 2rem;
+    transition: transform .2s ease;
+    margin: 1rem;
+    &:hover {
+       transform: scale(1.05);
+       border: 1px solid white;
+    }
+    background-position: center;
+}
+
+.title {
+    position: absolute;
+    bottom: 0;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.877);
+    color: white;
+}

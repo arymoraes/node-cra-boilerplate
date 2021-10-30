@@ -40,8 +40,8 @@ export default function SiteLayout(props: any): ReactElement {
                         style={{ height: 'calc(98.9vh - 64px)', borderRight: 0 }}
                     >
                         <SubMenu key="sub1" icon={<UserOutlined />} title="Games">
-                            <Menu.Item key="1">View Games</Menu.Item>
-                            <Menu.Item key="2">Add Game</Menu.Item>
+                            <Menu.Item key="1"><a href="/games">View Games</a></Menu.Item>
+                            <Menu.Item key="2"><a href="/addGame">Add Game</a></Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" icon={<LaptopOutlined />} title="Tokens">
                             <Menu.Item key="3">View Tokens</Menu.Item>
@@ -54,7 +54,7 @@ export default function SiteLayout(props: any): ReactElement {
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
+                    <Breadcrumb style={{ margin: '16px' }}>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                         <Breadcrumb.Item>Games</Breadcrumb.Item>
                         <Breadcrumb.Item>View Games</Breadcrumb.Item>
