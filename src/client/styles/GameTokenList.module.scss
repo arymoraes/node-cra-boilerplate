@@ -1,0 +1,30 @@
+.tokenList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 20vh;
+    overflow: scroll;
+    display: flex;
+
+    li {
+        border: 1px solid #fac240;
+        padding: .2rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #fac240;
+        }
+    }
+}
+
+.selected {
+    background-color: #fac240;
+
+    &:hover {
+        background-color: #fff;
+    }
+}
+
+.tokenList::-webkit-scrollbar {
+    display: none;
+}

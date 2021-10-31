@@ -3,6 +3,9 @@ import { Modal, Input, Alert } from 'antd';
 import { TokenEditI, TokenI } from '../../interfaces/Token';
 import { apiEditToken } from '../../pages/api/api';
 import styles from '../../styles/AddTokenModal.module.scss';
+import GameTokenList from '../lists/GameTokenList';
+import { useRecoilValue } from 'recoil';
+import { gamesState } from '../../recoil/atoms';
 
 interface Props {
     isOpen: boolean;
@@ -12,6 +15,8 @@ interface Props {
 }
 
 export default function EditTokenModal({ token, isOpen, closeModal, handleEditToken }: Props): ReactElement {
+
+    const games = useRecoilValue(gamesState);
 
     const [tokenInput, setTokenInput] = React.useState<TokenEditI>({
         contract: token.contract,
@@ -29,6 +34,13 @@ export default function EditTokenModal({ token, isOpen, closeModal, handleEditTo
         setTokenInput({
             ...tokenInput,
             [event.target.name]: event.target.value,
+        });
+    }
+
+    const handleGameChange = (gameId: number) => {
+        setTokenInput({
+            ...tokenInput,
+            game: games.find(game => game.id === gameId),
         });
     }
 
@@ -71,8 +83,13 @@ export default function EditTokenModal({ token, isOpen, closeModal, handleEditTo
                     <Input placeholder="Name" className={styles.input} onChange={handleChange} name="name" value={tokenInput.name} required />
                     <label htmlFor="symbol" className={styles.label}>Contract Address</label>
                     <Input placeholder="Symbol" className={styles.input} onChange={handleChange} name="symbol" value={tokenInput.symbol} required />
+                    <GameTokenList handleGameChange={handleGameChange} gameId={token.game && token.game.id} />
                 </form>
             </Modal>
         </>
     )
 }
+function gameState(gameState: any) {
+    throw new Error('Function not implemented.');
+}
+

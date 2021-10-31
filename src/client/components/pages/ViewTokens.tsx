@@ -5,12 +5,14 @@ import {  Button, Input } from 'antd';
 import { apiGetTokens } from '../../pages/api/api';
 import AddTokenModal from '../modals/AddTokenModal';
 import { TokenCard } from '../elements/TokenCard';
+import { useRecoilState } from 'recoil';
+import { tokensState } from '../../recoil/atoms';
 
 const { Search } = Input;
 
 export default function ViewTokens(): ReactElement {
 
-    const [tokens, setTokens] = React.useState<TokenI[]>([]);
+    const [tokens, setTokens] = useRecoilState(tokensState);
     const [filteredTokens, setFilteredTokens] = React.useState<TokenI[]>([]);
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 

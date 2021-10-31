@@ -5,12 +5,14 @@ import { GameCard } from '../elements/GameCard';
 import styles from '../../styles/ViewGames.module.scss';
 import { Button, Input } from 'antd';
 import AddGameModal from '../modals/AddGameModal';
+import { useRecoilState } from 'recoil';
+import { gamesState } from '../../recoil/atoms';
 
 const { Search } = Input;
 
 export default function ViewGames(): ReactElement {
 
-    const [games, setGames] = React.useState<GameI[]>([]);
+    const [games, setGames] = useRecoilState(gamesState);
     const [filteredGames, setFilteredGames] = React.useState<GameI[]>([]);
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 

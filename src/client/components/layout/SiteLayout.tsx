@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useEffect } from 'react'
 import Header from '../header/Header';
 import TokenList from '../lists/TokenList'
 import { apiGetTokens } from '../../pages/api/api';
@@ -6,18 +6,29 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import React from 'react';
 import Link from 'next/link';
+import { useRecoilState } from 'recoil';
+import { gamesState, tokensState } from '../../recoil/atoms';
+import { apiGetGames } from '../../pages/api/games/apiGames';
 
 const { SubMenu } = Menu;
 const { Content, Sider, Footer } = Layout;
 
 export default function SiteLayout(props: any): ReactElement {
-    const [tokens, setTokens] = useState<any>([]);
+    const [tokens, setTokens] = useRecoilState(tokensState);
+    const [games, setGames] = useRecoilState(gamesState);
 
     useEffect(() => {
         apiGetTokens().then((response) => {
             setTokens(response);
         });
-    }, [])
+    }, []);
+
+
+    useEffect(() => {
+      apiGetGames().then(res => {
+          setGames(res);
+      });
+    }, []);
 
     return (
         <Layout >
