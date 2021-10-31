@@ -10,7 +10,6 @@ export default function Header(): ReactElement {
             <div className="logo" />
             <Menu theme="dark" mode="horizontal" className={styles.navbar} defaultSelectedKeys={['2']}>
                 <Menu.Item key="1"><Link href="/">Home</Link></Menu.Item>
-                {/* <Menu.Item key="2">Dashboard</Menu.Item> */}
             </Menu>
             <span className={styles.greeting}>Hello, Boilimax</span>
             <span className={styles.profit}>$4,311,55</span>

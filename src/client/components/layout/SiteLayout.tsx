@@ -69,7 +69,7 @@ export default function SiteLayout(props: any): ReactElement {
                     >
                         {props.children}
                     </Content>
-                    <Footer style={{ textAlign: 'center', background: '#000c17', color: 'white', height: '5vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Fallenefc, BoiDrigoW e BoiLimaX ©2021</Footer>
+                    <Footer style={{ textAlign: 'center', background: '#000c17', color: 'white', height: '5vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'fixed', bottom: 0, width: '100%' }}>Fallenefc, BoiDrigoW e BoiLimaX ©2021</Footer>
                 </Layout>
             </Layout>
         </Layout>

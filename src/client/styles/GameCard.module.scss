@@ -25,3 +25,17 @@
     background-color: rgba(0, 0, 0, 0.877);
     color: white;
 }
+
+.delete {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        transform: scale(1.2);
+     }
+}

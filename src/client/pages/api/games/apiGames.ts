@@ -1,4 +1,4 @@
-import { GameRawI } from "../../../interfaces/Game";
+import { GameI, GameRawI } from "../../../interfaces/Game";
 import api from "../apiConfig";
 
 export const apiGetGames = async () => {
@@ -12,8 +12,20 @@ export const apiGetGames = async () => {
 
 export const apiAddGame = async (game: GameRawI) => {
     try {
-        const tokens = await api().post('/game', game);
-        return tokens.data.games;
+        const newGame = await api().post('/game', game);
+        return newGame.data.game;
+    } catch (err) {
+        return false;
+    }
+}
+
+export const apiDeleteGame = async (game: GameI) => {
+    try {
+        const deletedGame = await api().delete(`/game/${game.id}`);
+        if (deletedGame) {
+            return game.id;
+        }
+        return false;
     } catch (err) {
         return false;
     }
