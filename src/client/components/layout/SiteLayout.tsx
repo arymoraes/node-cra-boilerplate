@@ -12,8 +12,6 @@ const { Content, Sider, Footer } = Layout;
 
 export default function SiteLayout(props: any): ReactElement {
     const [tokens, setTokens] = useState<any>([]);
-    const [contract, setContract] = useState<string>('');
-    const [selectedPage, setSelectedPage] = useState<string>('HomePage');
 
     useEffect(() => {
         apiGetTokens().then((response) => {
@@ -26,10 +24,6 @@ export default function SiteLayout(props: any): ReactElement {
             <Header />
             <main>
                 {tokens && <TokenList tokens={tokens} />}
-                {/* <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Contract" onChange={handleChange}/>
-            <button type="submit">Add Token</button>
-          </form> */}
             </main>
             <Layout>
                 <Sider width={200} className="site-layout-background">

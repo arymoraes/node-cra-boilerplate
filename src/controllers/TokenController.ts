@@ -36,7 +36,8 @@ export const getTokens = async (req: Request, res: Response) => {
       take: 20,
       order: {
         id: "ASC",
-      }
+      },
+      relations: ['game']
     });
     const tokensContracts: string[] = tokens.map((token: Token) => {
       return token.contract;
@@ -44,7 +45,7 @@ export const getTokens = async (req: Request, res: Response) => {
     redisClient.mget(tokensContracts, (err, cachedData) => {
       const updatedTokens = tokens.map((token: Token, index: number) => {
         const tokenPrice = parseFloat(cachedData[index]);
-        const toFixedValue = tokenPrice < 5 ? 4 : 2 ;
+        const toFixedValue = tokenPrice < 5 ? 4 : 2;
         return {
           ...token,
           price: tokenPrice.toFixed(toFixedValue),
@@ -59,7 +60,7 @@ export const getTokens = async (req: Request, res: Response) => {
 
 export const getUserTokens = async (req: AuthRequest, res: Response) => {
   try {
-    const user = await User.findOne({ where: {id: req.user.id}, relations: ['tokens'] });
+    const user = await User.findOne({ where: { id: req.user.id }, relations: ['tokens'] });
     const userTokens = user.tokens;
     const tokensContracts: string[] = userTokens.map((token: Token) => {
       return token.contract;
@@ -67,7 +68,7 @@ export const getUserTokens = async (req: AuthRequest, res: Response) => {
     redisClient.mget(tokensContracts, (err, cachedData) => {
       const updatedTokens = userTokens.map((token: Token, index: number) => {
         const tokenPrice = parseFloat(cachedData[index]);
-        const toFixedValue = tokenPrice < 5 ? 4 : 2 ;
+        const toFixedValue = tokenPrice < 5 ? 4 : 2;
         return {
           ...token,
           price: tokenPrice.toFixed(toFixedValue),
@@ -117,3 +118,17 @@ export const fetchTokenFromPancakeswapApi = async (res: Response, contract: stri
     return false;
   }
 }
+
+export const deleteToken = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    await Token.delete(id);
+
+    res.status(200).send({
+      token: id,
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

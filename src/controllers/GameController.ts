@@ -6,7 +6,7 @@ export const getGames = async (req: Request, res: Response) => {
     const games = await Game.find();
 
     res.status(200).send({
-        games
+      games
     });
   } catch (error) {
     res.status(500).send(error);
@@ -18,13 +18,13 @@ export const addGame = async (req: Request, res: Response) => {
     const { name, url, img } = req.body;
 
     const newGame = Game.create({
-        name, url, img
+      name, url, img
     });
 
     await newGame.save();
 
     res.status(200).send({
-        game: newGame,
+      game: newGame,
     });
   } catch (error) {
     res.status(500).send(error);
@@ -32,16 +32,15 @@ export const addGame = async (req: Request, res: Response) => {
 };
 
 export const deleteGame = async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params;
-  
-      await Game.delete(id);
-  
-      res.status(200).send({
-          gameId: id,
-      });
-    } catch (error) {
-      res.status(500).send(error);
-    }
-  };
-  
+  try {
+    const { id } = req.params;
+
+    await Game.delete(id);
+
+    res.status(200).send({
+      gameId: id,
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/TokenCard.module.scss';
 import { TokenI } from '../../interfaces/Token';
-import { Button, Popconfirm } from 'antd';
+import { Button, Popconfirm, Popover } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { apiDeleteToken } from '../../pages/api/api';
 
@@ -31,6 +31,7 @@ export const TokenCard = ({ token, handleTokenDeletion }: Props) => {
                 <div className={styles.title}>
                     {token.name}
                 </div>
+                {token.game && <span>{token.game.name}</span>}
                 <div className={styles.price}>
                     ${token.price}
                 </div>

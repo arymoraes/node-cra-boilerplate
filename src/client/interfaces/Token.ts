@@ -1,3 +1,5 @@
+import { GameI } from "./Game";
+
 export interface TokenRawI {
     contract: string,
 }
@@ -9,4 +11,5 @@ export interface TokenI extends TokenRawI {
     price: string,
     name: string,
     symbol: string,
+    game?: GameI,
 }
