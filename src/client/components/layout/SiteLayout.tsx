@@ -5,6 +5,7 @@ import { apiAddToken, apiGetTokens } from '../../pages/api/api';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import React from 'react';
+import Link from 'next/link';
 
 const { SubMenu } = Menu;
 const { Content, Sider, Footer } = Layout;
@@ -40,12 +41,10 @@ export default function SiteLayout(props: any): ReactElement {
                         style={{ height: 'calc(98.9vh - 64px)', borderRight: 0 }}
                     >
                         <SubMenu key="sub1" icon={<UserOutlined />} title="Games">
-                            <Menu.Item key="1"><a href="/games">View Games</a></Menu.Item>
-                            <Menu.Item key="2"><a href="/addGame">Add Game</a></Menu.Item>
+                            <Menu.Item key="1"><Link href="/games">View Games</Link></Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" icon={<LaptopOutlined />} title="Tokens">
-                            <Menu.Item key="3">View Tokens</Menu.Item>
-                            <Menu.Item key="4">Add Token</Menu.Item>
+                            <Menu.Item key="3"><Link href="/tokens">View Tokens</Link></Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub3" icon={<NotificationOutlined />} title="Investments">
                             <Menu.Item key="5">My investments</Menu.Item>
@@ -64,6 +63,7 @@ export default function SiteLayout(props: any): ReactElement {
                         style={{
                             padding: 24,
                             margin: 0,
+                            marginBottom: '60px',
                             minHeight: 280,
                         }}
                     >
