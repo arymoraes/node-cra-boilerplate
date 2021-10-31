@@ -4,6 +4,12 @@ export interface TokenRawI {
     contract: string,
 }
 
+export interface TokenEditI extends TokenRawI {
+    name: string,
+    symbol: string,
+    game?: GameI,
+}
+
 export interface TokenI extends TokenRawI {
     id: number,
     created_at: string,

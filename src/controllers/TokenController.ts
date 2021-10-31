@@ -29,6 +29,26 @@ export const addToken = async (req: Request, res: Response) => {
   }
 };
 
+export const editToken = async (req: Request, res: Response) => {
+  try {
+    const { contract, name, symbol, game } = req.body;
+    const { id } = req.params;
+
+    // TODO: Check pancakeswap API to see if token exists.
+    const validToken = await fetchTokenFromPancakeswapApi(res, contract);
+
+    if (validToken) {
+      const token = await Token.update(id, {
+        name, symbol, contract, game
+      });
+      res.status(200).send(token);
+    }
+
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 export const getTokens = async (req: Request, res: Response) => {
   try {
     const tokens = await Token.find({

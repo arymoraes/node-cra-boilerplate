@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Modal, Input, Alert } from 'antd';
-import { TokenI, TokenRawI } from '../../interfaces/Token';
+import { TokenEditI, TokenI, TokenRawI } from '../../interfaces/Token';
 import { apiAddToken } from '../../pages/api/api';
 import styles from '../../styles/AddTokenModal.module.scss';
 
@@ -12,9 +12,13 @@ interface Props {
 
 export default function EditTokenModal({ isOpen, closeModal, handleEditToken }: Props): ReactElement {
 
-    const [tokenInput, setTokenInput] = React.useState<TokenRawI>({
+    const [tokenInput, setTokenInput] = React.useState<TokenEditI>({
         contract: '',
+        name: '',
+        symbol: '',
+        game: undefined,
     });
+    
     const [axiosResponse, setAxiosResponse] = React.useState<any>({
         status: '',
         message: '',
@@ -35,7 +39,7 @@ export default function EditTokenModal({ isOpen, closeModal, handleEditToken }: 
             handleEditToken(res);
             setAxiosResponse({
                 status: 'success',
-                message: 'Token successfully added',
+                message: 'Token successfully edited.',
             });
         }
     }
@@ -57,6 +61,10 @@ export default function EditTokenModal({ isOpen, closeModal, handleEditToken }: 
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="contract" className={styles.label}>Contract Address</label>
                     <Input placeholder="Contract Address" className={styles.input} onChange={handleChange} name="contract" required />
+                    <label htmlFor="Name" className={styles.label}>Name</label>
+                    <Input placeholder="Name" className={styles.input} onChange={handleChange} name="name" required />
+                    <label htmlFor="symbol" className={styles.label}>Contract Address</label>
+                    <Input placeholder="Symbol" className={styles.input} onChange={handleChange} name="symbol" required />
                 </form>
             </Modal>
         </>
