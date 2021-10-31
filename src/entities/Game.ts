@@ -30,5 +30,5 @@ export class Game extends BaseEntity {
     users: User[];
 
     @OneToMany(() => Token, (token) => token.game)
-    token: Game[];
+    token: Token[];
 }
