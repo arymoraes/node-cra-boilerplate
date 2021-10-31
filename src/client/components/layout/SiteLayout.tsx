@@ -1,7 +1,7 @@
-import { Component, ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import Header from '../header/Header';
 import TokenList from '../lists/TokenList'
-import { apiAddToken, apiGetTokens } from '../../pages/api/api';
+import { apiGetTokens } from '../../pages/api/api';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import React from 'react';

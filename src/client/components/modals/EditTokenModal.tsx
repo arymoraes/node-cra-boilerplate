@@ -1,24 +1,25 @@
 import React, { ReactElement } from 'react';
 import { Modal, Input, Alert } from 'antd';
-import { TokenEditI, TokenI, TokenRawI } from '../../interfaces/Token';
-import { apiAddToken } from '../../pages/api/api';
+import { TokenEditI, TokenI } from '../../interfaces/Token';
+import { apiEditToken } from '../../pages/api/api';
 import styles from '../../styles/AddTokenModal.module.scss';
 
 interface Props {
     isOpen: boolean;
     closeModal: () => void;
     handleEditToken: (token: TokenI) => void;
+    token: TokenI;
 }
 
-export default function EditTokenModal({ isOpen, closeModal, handleEditToken }: Props): ReactElement {
+export default function EditTokenModal({ token, isOpen, closeModal, handleEditToken }: Props): ReactElement {
 
     const [tokenInput, setTokenInput] = React.useState<TokenEditI>({
-        contract: '',
-        name: '',
-        symbol: '',
-        game: undefined,
+        contract: token.contract,
+        name: token.name,
+        symbol: token.symbol,
+        game: token.game,
     });
-    
+
     const [axiosResponse, setAxiosResponse] = React.useState<any>({
         status: '',
         message: '',
@@ -33,10 +34,15 @@ export default function EditTokenModal({ isOpen, closeModal, handleEditToken }: 
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        const res = await apiAddToken(tokenInput);
-        console.log(res);
+        const res = await apiEditToken({
+            ...token,
+            ...tokenInput,
+        });
+
         if (res) {
-            handleEditToken(res);
+            handleEditToken({
+                ...token, ...tokenInput
+            });
             setAxiosResponse({
                 status: 'success',
                 message: 'Token successfully edited.',
@@ -60,11 +66,11 @@ export default function EditTokenModal({ isOpen, closeModal, handleEditToken }: 
                 {axiosResponse.status && <Alert message={axiosResponse.message} type={axiosResponse.status} />}
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="contract" className={styles.label}>Contract Address</label>
-                    <Input placeholder="Contract Address" className={styles.input} onChange={handleChange} name="contract" required />
+                    <Input placeholder="Contract Address" className={styles.input} onChange={handleChange} name="contract" value={tokenInput.contract} required />
                     <label htmlFor="Name" className={styles.label}>Name</label>
-                    <Input placeholder="Name" className={styles.input} onChange={handleChange} name="name" required />
+                    <Input placeholder="Name" className={styles.input} onChange={handleChange} name="name" value={tokenInput.name} required />
                     <label htmlFor="symbol" className={styles.label}>Contract Address</label>
-                    <Input placeholder="Symbol" className={styles.input} onChange={handleChange} name="symbol" required />
+                    <Input placeholder="Symbol" className={styles.input} onChange={handleChange} name="symbol" value={tokenInput.symbol} required />
                 </form>
             </Modal>
         </>

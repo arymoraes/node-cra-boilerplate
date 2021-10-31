@@ -1,16 +1,20 @@
 import React from 'react';
 import styles from '../../styles/TokenCard.module.scss';
 import { TokenI } from '../../interfaces/Token';
-import { Button, Popconfirm, Popover } from 'antd';
+import { Button, Popconfirm } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { apiDeleteToken } from '../../pages/api/api';
+import EditTokenModal from '../modals/EditTokenModal';
 
 interface Props {
     token: TokenI,
     handleTokenDeletion: (tokenId: number) => void,
+    handleEditToken: (token: TokenI) => void,
 }
 
-export const TokenCard = ({ token, handleTokenDeletion }: Props) => {
+export const TokenCard = ({ token, handleTokenDeletion, handleEditToken }: Props) => {
+
+    const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
     const handleDelete = async (event: any) => {
         const response = await apiDeleteToken(token.id);
@@ -22,9 +26,18 @@ export const TokenCard = ({ token, handleTokenDeletion }: Props) => {
     const cancel = (event: any) => {
     }
 
+    const openModal = () => {
+        setIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsOpen(false);
+    }
+
     return (
         <a>
-            <main className={styles.container}>
+            <EditTokenModal isOpen={isOpen} token={token} closeModal={closeModal} handleEditToken={handleEditToken}/>
+            <main className={styles.container} onClick={openModal}>
                 <div className={styles.symbol}>
                     {token.symbol}
                 </div>

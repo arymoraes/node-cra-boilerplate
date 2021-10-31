@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
-import { TokenI, TokenRawI } from '../../interfaces/Token';
+import { TokenI } from '../../interfaces/Token';
 import styles from '../../styles/ViewTokens.module.scss';
-import { AutoComplete, Button, Input } from 'antd';
+import {  Button, Input } from 'antd';
 import { apiGetTokens } from '../../pages/api/api';
 import AddTokenModal from '../modals/AddTokenModal';
 import { TokenCard } from '../elements/TokenCard';
@@ -24,6 +24,21 @@ export default function ViewTokens(): ReactElement {
     const handleAddToken = (token: TokenI) => {
         setTokens([...tokens, token]);
         setFilteredTokens([...filteredTokens, token]);
+    }
+
+    const handleEditToken = (token: TokenI) => {
+        setTokens([...tokens].map((updatedToken: TokenI) => {
+            if (updatedToken.id === token.id) {
+                return token;
+            }
+            return updatedToken;
+        }));
+        setFilteredTokens([...tokens].map((updatedToken: TokenI) => {
+            if (updatedToken.id === token.id) {
+                return token;
+            }
+            return updatedToken;
+        }));
     }
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +67,7 @@ export default function ViewTokens(): ReactElement {
             </Button>
             <AddTokenModal isOpen={isOpen} closeModal={closeModal} handleAddToken={handleAddToken}/>
             <div className={styles.container}>
-                {filteredTokens && filteredTokens.map((token) => <TokenCard handleTokenDeletion={handleTokenDeletion} key={token.id} token={token} />)}
+                {filteredTokens && filteredTokens.map((token) => <TokenCard handleEditToken={handleEditToken} handleTokenDeletion={handleTokenDeletion} key={token.id} token={token} />)}
             </div>
         </>
     )

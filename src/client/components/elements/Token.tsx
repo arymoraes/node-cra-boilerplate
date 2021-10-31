@@ -1,5 +1,5 @@
 import React from 'react';
-import TokenI from '../../interfaces/Token';
+import { TokenI } from '../../interfaces/Token';
 import styles from '../../styles/Token.module.scss';
 import { Popover, Button } from 'antd';
 

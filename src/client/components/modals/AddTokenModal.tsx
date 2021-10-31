@@ -30,7 +30,6 @@ export default function AddTokenModal({ isOpen, closeModal, handleAddToken }: Pr
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         const res = await apiAddToken(tokenInput);
-        console.log(res);
         if (res) {
             handleAddToken(res);
             setAxiosResponse({

@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect } from 'react';
-import { GameI, GameRawI } from '../../interfaces/Game';
-import { apiAddGame, apiGetGames } from '../../pages/api/games/apiGames';
+import { GameI } from '../../interfaces/Game';
+import { apiGetGames } from '../../pages/api/games/apiGames';
 import { GameCard } from '../elements/GameCard';
 import styles from '../../styles/ViewGames.module.scss';
-import { AutoComplete, Button, Input } from 'antd';
+import { Button, Input } from 'antd';
 import AddGameModal from '../modals/AddGameModal';
 
 const { Search } = Input;

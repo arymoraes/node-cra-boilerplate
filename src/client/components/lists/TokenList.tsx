@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react'
-import TokenI from '../../interfaces/Token'
+import React, { ReactElement } from 'react';
+import { TokenI } from '../../interfaces/Token';
 import { Token } from '../elements/Token';
 import styles from '../../styles/TokenList.module.scss';
 
