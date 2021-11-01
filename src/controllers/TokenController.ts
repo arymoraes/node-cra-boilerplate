@@ -41,7 +41,8 @@ export const editToken = async (req: Request, res: Response) => {
       const token = await Token.update(id, {
         name, symbol, contract, game
       });
-      res.status(200).send(token);
+      const updatedToken = Token.findOne(id);
+      res.status(200).send(updatedToken);
     }
 
   } catch (error) {

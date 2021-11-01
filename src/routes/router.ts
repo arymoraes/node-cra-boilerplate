@@ -1,7 +1,7 @@
 import express from 'express';
 import authMiddleware from '../middleware/auth';
 import { addToken, addUserToken, getTokens, getUserTokens, deleteToken, editToken } from '../controllers/TokenController';
-import { adminLogin, createAdmin } from '../controllers/UserController';
+import { adminLogin, adminProfile, createAdmin } from '../controllers/UserController';
 import { addGame, deleteGame, getGames } from '../controllers/GameController';
 
 const router = express.Router();
@@ -9,6 +9,7 @@ const router = express.Router();
 // AUTH
 router.post('/user/register', createAdmin);
 router.post('/user/login', adminLogin);
+router.get('/user/me', authMiddleware, adminProfile);
 
 router.get('/tokens', getTokens);
 router.post('/token', addToken);
