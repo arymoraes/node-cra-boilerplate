@@ -10,8 +10,10 @@ import { useRouter } from 'next/router';
 export default function Header(): ReactElement {
     const router = useRouter();
     const [user, setUser] = useRecoilState(userState);
+    const [isDisabled, setIsDisabled] = React.useState(false);
 
     const logout = () => {
+        setIsDisabled(true);
         setUser(null);
         localStorage.removeItem('token');
         router.push('/login');
@@ -23,9 +25,9 @@ export default function Header(): ReactElement {
             <Menu theme="dark" mode="horizontal" className={styles.navbar} defaultSelectedKeys={['2']}>
                 <Menu.Item key="1"><Link href="/">Home</Link></Menu.Item>
             </Menu>
-            <span className={styles.greeting}>Hello, Boilimax</span>
+            <span className={styles.greeting}>Hello, {user && user.username}</span>
             <span className={styles.profit}>$4,311,55</span>
-            <Button type="primary" className={styles.button} onClick={logout}>Logout</Button>
+            <Button type="primary" className={styles.button} onClick={logout} disabled={isDisabled}>Logout</Button>
         </div>
     )
 }

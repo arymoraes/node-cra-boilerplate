@@ -70,12 +70,12 @@ export default function SiteLayout(props: any): ReactElement {
                             defaultOpenKeys={['sub1']}
                             style={{ height: 'calc(98.9vh - 64px)', borderRight: 0 }}
                         >
-                            <SubMenu key="sub1" icon={<UserOutlined />} title="Games">
-                                <Menu.Item key="1"><Link href="/games">View Games</Link></Menu.Item>
-                            </SubMenu>
-                            <SubMenu key="sub2" icon={<LaptopOutlined />} title="Tokens">
-                                <Menu.Item key="3"><Link href="/tokens">View Tokens</Link></Menu.Item>
-                            </SubMenu>
+                            {user && user.role === 'admin' &&
+                                <SubMenu key="sub1" icon={<UserOutlined />} title="Admin Menu">
+                                    <Menu.Item key="1"><Link href="/games">View/Add Games</Link></Menu.Item>
+                                    <Menu.Item key="3"><Link href="/tokens">View/Add Tokens</Link></Menu.Item>
+                                </SubMenu>
+                            }
                             <SubMenu key="sub3" icon={<NotificationOutlined />} title="Investments">
                                 <Menu.Item key="5">My investments</Menu.Item>
                                 <Menu.Item key="6">My profit</Menu.Item>
