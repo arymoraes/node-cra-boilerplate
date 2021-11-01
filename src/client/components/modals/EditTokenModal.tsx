@@ -89,7 +89,3 @@ export default function EditTokenModal({ token, isOpen, closeModal, handleEditTo
         </>
     )
 }
-function gameState(gameState: any) {
-    throw new Error('Function not implemented.');
-}
-
