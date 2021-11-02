@@ -1,7 +1,8 @@
 import {
-    Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany, JoinTable,
+    Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToMany, JoinTable, OneToMany,
 } from 'typeorm';
 import { Game } from './Game';
+import { Investment } from './Investment';
 import { Token } from './Token';
 
 export enum UserRole {
@@ -47,4 +48,7 @@ export class User extends BaseEntity {
     @ManyToMany(() => Game, (game) => game.users)
     @JoinTable({ name: 'users_games' })
     game: Game[];
+
+    @OneToMany(() => Investment, (investment) => investment.user)
+    investment: Investment[];
 }

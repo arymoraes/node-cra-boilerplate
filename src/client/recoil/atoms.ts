@@ -17,3 +17,8 @@ export const userState = atom<UserI | null>({
     key: 'userState',
     default: null,
 });
+
+export const investmentsState = atom<any>({
+    key: 'investmentsState',
+    default: null,
+});

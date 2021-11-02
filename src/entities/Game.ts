@@ -1,6 +1,7 @@
 import {
     Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, ManyToMany, OneToMany,
 } from 'typeorm';
+import { Investment } from './Investment';
 import { Token } from './Token';
 import { User } from './User';
 
@@ -31,4 +32,7 @@ export class Game extends BaseEntity {
 
     @OneToMany(() => Token, (token) => token.game)
     token: Token[];
+
+    @OneToMany(() => Investment, (investment) => investment.game)
+    investment: Investment[];
 }

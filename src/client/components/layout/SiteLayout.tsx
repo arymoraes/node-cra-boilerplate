@@ -6,7 +6,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import React from 'react';
 import Link from 'next/link';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { gamesState, tokensState, userState } from '../../recoil/atoms';
 import { apiGetGames } from '../../pages/api/games/apiGames';
 import { useRouter } from 'next/router';
@@ -31,7 +31,6 @@ export default function SiteLayout(props: any): ReactElement {
                     if (response) {
                         setUser(response.user);
                         localStorage.setItem('token', `Bearer ${response.token}`);
-                        setFetchedUserInfo(true);
                     }
                 }).catch((error) => {
                     router.push('/login');
@@ -39,6 +38,7 @@ export default function SiteLayout(props: any): ReactElement {
             } else {
                 router.push('/login');
             }
+            setFetchedUserInfo(true);
             return;
         }
         apiGetTokens().then((response) => {

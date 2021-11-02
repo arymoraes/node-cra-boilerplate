@@ -9,6 +9,7 @@ import { Token } from './entities/Token';
 import fetchAllTokenPrices from './scripts/fetchTokenPrices';
 import { User } from './entities/User';
 import { Game } from './entities/Game';
+import { Investment } from './entities/Investment';
 
 const app = express();
 dotenv.config();
@@ -32,7 +33,7 @@ export const redisClient = redis.createClient();
        username: process.env.DB_USERNAME,
        password: process.env.DB_PASSWORD,
        database: process.env.DB_NAME,
-       entities: [Token, User, Game],
+       entities: [Token, User, Game, Investment],
        synchronize: true, // DO NOT USE FOR PRODUCTION
      });
      app.listen(parseInt(process.env.PORT, 10), () => {
