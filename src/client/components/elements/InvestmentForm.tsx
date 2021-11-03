@@ -43,7 +43,7 @@ export default function InvestmentForm({ games, tokens, gameName }: Props): Reac
         });
         if (property === 'amount') {
             const tokenPrice: any = tokens.find((token: any) => token.id === formData.token);
-            setAmountInDollar(value * parseFloat(tokenPrice && tokenPrice.price || 1));
+            setAmountInDollar(calculateAmountInDollar(value, tokenPrice && tokenPrice.price || 1));
         }
     }
 
@@ -58,10 +58,14 @@ export default function InvestmentForm({ games, tokens, gameName }: Props): Reac
         if (response) {
             setInvestments({
                 ...investments,
-                [gameName]: [...investments[gameName], response]
+                [gameName]: [...investments[gameName] || [], response]
             });
         }
     };
+
+    const calculateAmountInDollar = (value: number, tokenPrice: string) => {
+        return value * parseFloat(tokenPrice || '1');
+    }
 
     return (
         <div className={styles.form}>
@@ -120,8 +124,8 @@ export default function InvestmentForm({ games, tokens, gameName }: Props): Reac
                         <Button type={selected === 'withdrawal' ? 'primary' : 'dashed'} onClick={() => setSelected('withdrawal')}>Withdrawal</Button>
                         <Button type={selected === 'deposit' ? 'primary' : 'dashed'} onClick={() => setSelected('deposit')}>Deposit</Button>
                     </Form.Item>
-                    <Form.Item name="Amount in $" label="Amount in $">
-                        <Input type="number" defaultValue={amountInDollar} disabled />
+                    <Form.Item name="Amount in $" label="Amount in $"> {amountInDollar.toFixed(2)}
+                        <input type="hidden" value={amountInDollar}></input>
                     </Form.Item>
                 </div>
             </Form>

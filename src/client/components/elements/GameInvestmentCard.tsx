@@ -38,9 +38,12 @@ export const GameInvestmentCard = ({ investmentGame, gameName, totalInvestment }
                 <div className={styles.title}>
                     {gameName}
                 </div>
-                <div className={totalInvestment > 0 ? styles.price : styles.priceNegative}>
-                    ${totalInvestment.toFixed(2)}
-                </div>
+                {
+                    totalInvestment &&
+                    <div className={totalInvestment > 0 ? styles.price : styles.priceNegative}>
+                        ${totalInvestment.toFixed(2)}
+                    </div>
+                }
             </main>
         </>
     )
