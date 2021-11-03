@@ -7,21 +7,25 @@ import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/
 import React from 'react';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
-import { gamesState, tokensState, userState } from '../../recoil/atoms';
+import { gamesState, investmentsState, investmentsTotalState, tokensState, userState } from '../../recoil/atoms';
 import { apiGetGames } from '../../pages/api/games/apiGames';
 import { useRouter } from 'next/router';
 import { apiGetProfile } from '../../pages/api/auth';
 import LoadingSpinner from '../elements/LoadingSpinner';
+import { apiGetInvestments } from '../../pages/api/investments/apiInvestment';
 
 const { SubMenu } = Menu;
 const { Content, Sider, Footer } = Layout;
 
 export default function SiteLayout(props: any): ReactElement {
+    
     const router = useRouter();
     const [tokens, setTokens] = useRecoilState(tokensState);
     const [games, setGames] = useRecoilState(gamesState);
     const [user, setUser] = useRecoilState(userState);
     const [fetchedUserInfo, setFetchedUserInfo] = useState<boolean>(false);
+    const [investments, setInvestments] = useRecoilState<any>(investmentsState);
+    const [investmentsTotal, setInvestmentsTotal] = useRecoilState<any>(investmentsTotalState);
  
     useEffect(() => {
         if (!user) {
@@ -45,6 +49,10 @@ export default function SiteLayout(props: any): ReactElement {
         });
         apiGetGames().then(res => {
             setGames(res);
+        });
+        apiGetInvestments().then(res => {
+            setInvestments(res.investments);
+            setInvestmentsTotal(res.totalInvestments);
         });
         setFetchedUserInfo(true);
     }, []);
@@ -72,12 +80,11 @@ export default function SiteLayout(props: any): ReactElement {
                             {user && user.role === 'admin' &&
                                 <SubMenu key="sub1" icon={<UserOutlined />} title="Admin Menu">
                                     <Menu.Item key="1"><Link href="/games">View/Add Games</Link></Menu.Item>
-                                    <Menu.Item key="3"><Link href="/tokens">View/Add Tokens</Link></Menu.Item>
+                                    <Menu.Item key="2"><Link href="/tokens">View/Add Tokens</Link></Menu.Item>
                                 </SubMenu>
                             }
                             <SubMenu key="sub3" icon={<NotificationOutlined />} title="Investments">
-                                <Menu.Item key="5">My investments</Menu.Item>
-                                <Menu.Item key="6">My profit</Menu.Item>
+                                <Menu.Item key="3"><Link href="/investments">My investments</Link></Menu.Item>
                             </SubMenu>
                         </Menu>
                     </Sider>
@@ -106,6 +113,14 @@ export default function SiteLayout(props: any): ReactElement {
     }
 }
 function charCountState(charCountState: any) {
+    throw new Error('Function not implemented.');
+}
+
+function setInvestments(investments: any) {
+    throw new Error('Function not implemented.');
+}
+
+function setInvestmentsTotal(totalInvestments: any) {
     throw new Error('Function not implemented.');
 }
 

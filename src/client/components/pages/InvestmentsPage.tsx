@@ -1,29 +1,22 @@
-import React, { ReactElement, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { apiGetInvestments } from '../../pages/api/investments/apiInvestment';
+import React, { ReactElement } from 'react';
+import { useRecoilValue } from 'recoil';
 import { investmentsState, investmentsTotalState } from '../../recoil/atoms';
 import { GameInvestmentCard } from '../elements/GameInvestmentCard';
+import { TotalProfit } from '../elements/TotalProfit';
 
 export default function InvestmentsPage(): ReactElement {
 
-    const [investments, setInvestments] = useRecoilState<any>(investmentsState);
-    const [investmentsTotal, setInvestmentsTotal] = useRecoilState<any>(investmentsTotalState);
-
-    useEffect(() => {
-        apiGetInvestments().then(res => {
-            setInvestments(res.investments);
-            setInvestmentsTotal(res.totalInvestments);
-        });
-    }, [])
+    const investments = useRecoilValue(investmentsState);
+    const investmentsTotal = useRecoilValue(investmentsTotalState);
 
     return (
         <div>
-            Total Profit: {investmentsTotal && Object.values(investmentsTotal).reduce((a, b) => a + b, 0)}
-            {investments && Object.values(investments).map((investment: any, index: number) => {
+            {investmentsTotal && <TotalProfit isHeader={false} investmentsTotal={investmentsTotal} />}
+            {investments && investmentsTotal && Object.values(investments).length && Object.values(investments).map((investment: any, index: number) => {
                 const gameName = Object.keys(investments)[index];
                 const totalInvestment = investmentsTotal[gameName];
                 return (
-                <GameInvestmentCard key={gameName} totalInvestment={totalInvestment} gameName={gameName} investmentGame={investment} />
+                        <GameInvestmentCard key={gameName} totalInvestment={totalInvestment} gameName={gameName} investmentGame={investment} />
                 )
             })}
         </div>

@@ -39,7 +39,7 @@ export const GameInvestmentCard = ({ investmentGame, gameName, totalInvestment }
                     {gameName}
                 </div>
                 <div className={totalInvestment > 0 ? styles.price : styles.priceNegative}>
-                    ${totalInvestment}
+                    ${totalInvestment.toFixed(2)}
                 </div>
             </main>
         </>

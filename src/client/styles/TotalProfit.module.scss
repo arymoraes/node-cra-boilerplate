@@ -1,0 +1,38 @@
+.button {
+    background-color: #fdbf2f;
+    border-color: #fdbf2f;
+    color: #000;
+
+    &Positive {
+        background-color: #00c853;
+        border-color: #00c853;
+        color: #fff;
+
+        &:hover {
+            background-color: #0ef36e;
+        }
+    }
+
+    &Negative {
+        background-color: #ff5252;
+        border-color: #ff5252;
+        color: #fff;
+
+        &:hover {
+            background-color: #f87575;
+            border-color: #f87575;
+            color: #fff;
+        }
+    }
+
+    &:hover {
+        background-color: #FFB100;
+        border-color: #FFB100;
+        color: #000;
+    }
+}
+
+.gainloss {
+    font-weight: 600;
+    font-size: 16px;
+}

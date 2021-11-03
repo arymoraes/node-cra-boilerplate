@@ -27,7 +27,7 @@ export default function ViewInvestmentModal({ investmentGame, isOpen, closeModal
     
     const [formData, setFormData] = React.useState({
         amount: 0,
-        game: 1,
+        game: (games && games.find((game: any) => game.name === gameName)).id || 1,
         token: 0,
         date: format(new Date(Date.now()), 'dd/MM/yyyy'),
         is_withdrawal: false,
@@ -72,15 +72,13 @@ export default function ViewInvestmentModal({ investmentGame, isOpen, closeModal
                 width={'85vw'}
                 bodyStyle={{ height: '85vh' }}
                 visible={isOpen[gameName]}
-                okText="Submit"
-                okButtonProps={{
-                    htmlType: 'submit',
-                }}
+                okText={'Close'}
                 onCancel={closeModal}
             >
                 Total Earnings: {totalEarnings}
                 <Collapse
                     defaultActiveKey={['1']}
+                    className={styles.collapse}
                 >
                     {investmentGame.map((game: any, index: number) => {
                         const investmentDate = format(new Date(game.date), 'dd/MM/yyyy');
@@ -123,8 +121,7 @@ export default function ViewInvestmentModal({ investmentGame, isOpen, closeModal
                                     filterOption={(input, option: any) =>
                                         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                     }
-                                    value={formData.game}
-                                    defaultValue={(games && games.find((game: any) => game.name === gameName)).name || ''}
+                                    defaultValue={(games && games.find((game: any) => game.name === gameName)).id || 1}
                                 >
                                     {games.map((game: any, index: number) => {
                                         return (

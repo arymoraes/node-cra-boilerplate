@@ -1,6 +1,6 @@
 .form {
-    height: 30vh;
-    border: 2px solid red;
+    height: 29vh;
+    border-top: 2px solid #006;
     position: absolute;
     bottom: 4rem;
     z-index: 100;
@@ -16,4 +16,18 @@
 
 .formData {
     display: flex;
+}
+
+.collapse {
+    height: 50vh;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #1890ff;
+        outline: 1px solid #0067c7;
+      }
 }
