@@ -23,7 +23,7 @@ export const TotalProfit = ({ investmentsTotal, isHeader }: Props) => {
     return (
         <Popover content={content} title={totalValue}>
             {!isHeader && <span className={styles.gainloss}>Total Gain/Loss: </span>}
-            <Button className={totalValue > 0 ? styles.buttonPositive : styles.buttonNegative} type="primary">${totalValue}</Button>
+            <Button className={totalValue > 0 ? styles.buttonPositive : styles.buttonNegative} type="primary">${totalValue.toFixed(2)}</Button>
         </Popover>
     )
 }
