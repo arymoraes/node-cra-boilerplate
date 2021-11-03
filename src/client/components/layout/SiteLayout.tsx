@@ -39,7 +39,6 @@ export default function SiteLayout(props: any): ReactElement {
                 router.push('/login');
             }
             setFetchedUserInfo(true);
-            return;
         }
         apiGetTokens().then((response) => {
             setTokens(response);

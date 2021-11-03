@@ -1,7 +1,74 @@
-.withdrawal {
-    color: green;
+.container {
+    width: 100%;
+    height: 3rem;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    background-size: 100%;
+    transition: transform .2s ease;
+    margin: .3rem;
+    background-color: white;
+    border: 1px solid white;
+    &:hover {
+       border: 1px solid #1890ff;
+    }
+    background-position: center;
+    cursor: pointer;
 }
 
-.deposit {
-    color: red;
+.symbol {
+    background-color: #1890ff;
+    width: 5rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+}
+
+.price {
+    font-weight: 600;
+    color: #000;
+    position: absolute;
+    right: 5rem;
+    background-color: green;
+    height: 100%;
+    width: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.priceNegative {
+    font-weight: 600;
+    color: #000;
+    position: absolute;
+    right: 5rem;
+    background-color: red;
+    height: 100%;
+    width: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.games {
+    position: absolute;
+    left: 30vw;
+}
+
+.title {
+    padding: 0 1rem;
+    color: black;
+}
+
+.total {
+    color: #1890ff;
+    font-weight: 600;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

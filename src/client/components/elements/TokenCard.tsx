@@ -36,7 +36,7 @@ export const TokenCard = ({ token, handleTokenDeletion, handleEditToken }: Props
 
     return (
         <a>
-            <EditTokenModal isOpen={isOpen} token={token} closeModal={closeModal} handleEditToken={handleEditToken}/>
+            <EditTokenModal isOpen={isOpen} token={token} closeModal={closeModal} handleEditToken={handleEditToken} />
             <main className={styles.container} onClick={openModal}>
                 <div className={styles.symbol}>
                     {token.symbol}

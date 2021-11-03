@@ -1,0 +1,19 @@
+.form {
+    height: 30vh;
+    border: 2px solid red;
+    position: absolute;
+    bottom: 4rem;
+    z-index: 100;
+    width: 97%;
+    padding: 1rem;
+    overflow: scroll;
+}
+
+.container, .containerRight {
+    width: 50%;
+    padding: 1rem;
+}
+
+.formData {
+    display: flex;
+}

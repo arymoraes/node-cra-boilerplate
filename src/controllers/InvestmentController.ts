@@ -6,6 +6,7 @@ export const addUserInvestment = (req: AuthRequest, res: Response) => {
     try {
         const { user } = req;
         const { date, amount, is_withdrawal, game, token, token_amount } = req.body;
+        console.log(req.body);
         const userInvestment = {
             user: user.id,
             date, amount, is_withdrawal, game, token, token_amount

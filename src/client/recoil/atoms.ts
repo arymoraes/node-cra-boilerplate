@@ -22,3 +22,8 @@ export const investmentsState = atom<any>({
     key: 'investmentsState',
     default: null,
 });
+
+export const investmentsTotalState = atom<any>({
+    key: 'investmentsTotalState',
+    default: null,
+});
