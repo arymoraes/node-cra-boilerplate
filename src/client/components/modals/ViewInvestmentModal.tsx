@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
-import { Collapse, Modal, Select } from 'antd';
+import { Button, Collapse, Modal, Select } from 'antd';
 import { format } from 'date-fns';
 import styles from '../../styles/ViewInvestmentModal.module.scss';
-import { useRecoilValue } from 'recoil';
-import { gamesState, tokensState } from '../../recoil/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { gamesState, investmentsState, tokensState } from '../../recoil/atoms';
 import InvestmentForm from '../elements/InvestmentForm';
+import { apiDeleteInvestment } from '../../pages/api/investments/apiInvestment';
 
 const { Panel } = Collapse;
-const { Option } = Select;
 
 interface Props {
     isOpen: any;
@@ -21,6 +21,16 @@ export default function ViewInvestmentModal({ investmentGame, isOpen, closeModal
    
     const games = useRecoilValue(gamesState);
     const tokens = useRecoilValue(tokensState);
+    const [investments, setInvestments] = useRecoilState(investmentsState);
+
+    const handleDelete = async (id: number) => {
+        const response = await apiDeleteInvestment(id);
+        if (response) {
+            setInvestments({
+                ...investments,
+                [gameName]: investments[gameName].filter((investment: any) => investment.id !== id)});
+        }
+    }
 
     return (
         <>
@@ -59,6 +69,7 @@ export default function ViewInvestmentModal({ investmentGame, isOpen, closeModal
                                     <p>
                                         <b>Investment Date:</b> {investmentDate}
                                     </p>
+                                    <Button danger type="primary" onClick={() => handleDelete(game.id)}>Delete</Button>
                                 </div>
                             </Panel>
                         )

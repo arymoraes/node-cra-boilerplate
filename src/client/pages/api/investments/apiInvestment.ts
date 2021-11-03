@@ -18,3 +18,12 @@ export const apiAddInvestment = async (investment: InvestmentRawI) => {
         return false;
     }
 }
+
+export const apiDeleteInvestment = async (investmentId: number) => {
+    try {
+        const token = await api().delete(`/user/investments/${investmentId}`);
+        return token.data;
+    } catch (error) {
+        return false;
+    }
+}
