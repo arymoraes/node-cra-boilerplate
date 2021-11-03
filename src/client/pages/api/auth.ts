@@ -1,4 +1,4 @@
-import { LoginCredentialsI } from "../../interfaces/User";
+import { LoginCredentialsI, RegisterCredentialsI } from "../../interfaces/User";
 import api from "./apiConfig";
 
 export const apiLogin = async (loginCredentials: LoginCredentialsI) => {
@@ -9,6 +9,16 @@ export const apiLogin = async (loginCredentials: LoginCredentialsI) => {
         return false;
     }
 }
+
+export const apiRegister = async (registerCredentials: RegisterCredentialsI) => {
+    try {
+        const user = await api().post('/user/register', registerCredentials);
+        return user.data;
+    } catch (err) {
+        return false;
+    }
+}
+
 
 export const apiGetProfile = async () => {
     try {
