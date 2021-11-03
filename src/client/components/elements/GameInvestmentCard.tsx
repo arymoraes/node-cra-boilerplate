@@ -12,6 +12,8 @@ interface Props {
 
 export const GameInvestmentCard = ({ investmentGame, gameName, totalInvestment }: Props) => {
 
+    console.log(investmentGame);
+
     const [isOpen, setIsOpen] = React.useState<any>({});
 
     const openModal = () => {

@@ -3,7 +3,7 @@ import authMiddleware from '../middleware/auth';
 import { addToken, addUserToken, getTokens, getUserTokens, deleteToken, editToken } from '../controllers/TokenController';
 import { adminLogin, adminProfile, createAdmin } from '../controllers/UserController';
 import { addGame, deleteGame, getGames } from '../controllers/GameController';
-import { addUserInvestment, getUserInvestments } from '../controllers/InvestmentController';
+import { addUserInvestment, deleteInvestment, getUserInvestments } from '../controllers/InvestmentController';
 
 const router = express.Router();
 
@@ -26,5 +26,6 @@ router.get('/user/tokens', authMiddleware, getUserTokens);
 
 router.post('/user/investment', authMiddleware, addUserInvestment);
 router.get('/user/investments', authMiddleware, getUserInvestments);
+router.delete('/user/investments/:id', authMiddleware, deleteInvestment);
 
 export default router;
