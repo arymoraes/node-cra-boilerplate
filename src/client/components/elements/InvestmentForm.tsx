@@ -21,6 +21,7 @@ export default function InvestmentForm({ games, tokens, gameName }: Props): Reac
     const [amountInDollar, setAmountInDollar] = React.useState(0);
     const [selected, setSelected] = React.useState('deposit');
     const [investments, setInvestments] = useRecoilState(investmentsState);
+    const [customAmount, setCustomAmount] = React.useState(0);
 
     const currentGame = games && gameName && games.find((game: any) => game.name === gameName);
     let currentGameId = 1;
@@ -34,6 +35,7 @@ export default function InvestmentForm({ games, tokens, gameName }: Props): Reac
         token: 0,
         date: format(new Date(Date.now()), 'dd/MM/yyyy'),
         is_withdrawal: false,
+        customAmount: 0,
     });
 
     function onChange(value: any, property: string) {
@@ -49,10 +51,11 @@ export default function InvestmentForm({ games, tokens, gameName }: Props): Reac
 
     const handleSubmit = async () => {
         setFormData({ ...formData });
+        const tokenOperationAmount = formData.customAmount > 0 ?  formData.customAmount : amountInDollar ;
         const response = await apiAddInvestment({
             ...formData,
             token_amount: +formData.amount,
-            amount: amountInDollar,
+            amount: +tokenOperationAmount,
             is_withdrawal: selected === 'withdrawal' ? true : false
         });
         if (response) {
@@ -126,6 +129,9 @@ export default function InvestmentForm({ games, tokens, gameName }: Props): Reac
                     </Form.Item>
                     <Form.Item name="Amount in $" label="Amount in $"> {amountInDollar.toFixed(2)}
                         <input type="hidden" value={amountInDollar}></input>
+                    </Form.Item>
+                    <Form.Item name="Custom Amount in $ (overrides above value)" label="Custom Amount in $ (overrides above value)">
+                        <Input type="number" value={formData.customAmount} onChange={(event) => onChange(event.target.value, 'customAmount')} />
                     </Form.Item>
                 </div>
             </Form>

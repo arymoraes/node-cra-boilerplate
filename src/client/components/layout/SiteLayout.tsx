@@ -55,6 +55,7 @@ export default function SiteLayout(props: any): ReactElement {
             setInvestmentsTotal(res.totalInvestments);
         });
         setFetchedUserInfo(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (!fetchedUserInfo) {

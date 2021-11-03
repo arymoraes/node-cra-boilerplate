@@ -9,9 +9,9 @@ interface Props {
 
 export const TotalProfit = ({ investmentsTotal, isHeader }: Props) => {
 
-    const totalValue = investmentsTotal && Object.values(investmentsTotal).reduce((a, b) => a + b, 0);
-    const positiveValues = investmentsTotal && Object.values(investmentsTotal).filter((value:any) => value > 0).reduce((a, b) => a + b, 0);
-    const negativeValues = investmentsTotal && Object.values(investmentsTotal).filter((value:any) => value < 0).reduce((a, b) => a + b, 0);
+    const totalValue = investmentsTotal && Object.values(investmentsTotal).reduce((a, b: any) => a + b, 0);
+    const positiveValues = investmentsTotal && Object.values(investmentsTotal).filter((value:any) => value > 0).reduce((a, b: any) => a + b, 0);
+    const negativeValues = investmentsTotal && Object.values(investmentsTotal).filter((value:any) => value < 0).reduce((a, b: any) => a + b, 0);
 
     const content = (
         <div>

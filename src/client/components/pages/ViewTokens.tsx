@@ -21,6 +21,7 @@ export default function ViewTokens(): ReactElement {
             setTokens(res);
             setFilteredTokens(res);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleAddToken = (token: TokenI) => {

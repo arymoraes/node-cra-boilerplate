@@ -21,6 +21,7 @@ export default function ViewGames(): ReactElement {
             setGames(res);
             setFilteredGames(res);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleAddGame = (game: GameI) => {
