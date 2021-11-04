@@ -22,7 +22,9 @@ app.use(bodyParser.json());
 app.use(cors(corsConfig));
 app.use(router);
 
-export const redisClient = redis.createClient();
+export const redisClient = redis.createClient(process.env.REDIS_PORT, {
+  host: process.env.REDIS_URL,
+});
 
 (async () => {
    try {
