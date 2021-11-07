@@ -54,7 +54,6 @@ export const getTokens = async (req: Request, res: Response) => {
   try {
     const tokens = await Token.find({
       skip: 0,
-      take: 20,
       order: {
         id: "ASC",
       },
